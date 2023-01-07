@@ -20,6 +20,8 @@ export default async function handler(req: NextRequest) {
       ? searchParams.get("title")?.slice(0, 100)
       : "~/maxphillipsdev";
 
+    const hasSpace = searchParams.has("space");
+
     return new ImageResponse(
       (
         <div
@@ -27,7 +29,6 @@ export default async function handler(req: NextRequest) {
             height: "100%",
             width: "100%",
             display: "flex",
-            flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
             backgroundColor: "#151718",
@@ -36,7 +37,25 @@ export default async function handler(req: NextRequest) {
             fontSize: "48px",
             textAlign: "center",
           }}
-        ></div>
+        >
+          <span
+            style={{
+              color: "#E93D82",
+              paddingRight: hasSpace ? "1rem" : "unset",
+            }}
+          >
+            ~/maxphillipsdev
+          </span>
+          {hasTitle && (
+            <span
+              style={{
+                color: "#FEECF4",
+              }}
+            >
+              {title}
+            </span>
+          )}
+        </div>
       ),
       {
         width: 1200,
