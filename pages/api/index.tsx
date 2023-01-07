@@ -41,7 +41,7 @@ export default async function handler(req: NextRequest) {
           <span
             style={{
               color: "#E93D82",
-              paddingRight: hasSpace ? "1rem" : "unset",
+              paddingRight: hasSpace ? "1rem" : "",
             }}
           >
             ~/maxphillipsdev
