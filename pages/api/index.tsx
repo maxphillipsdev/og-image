@@ -22,6 +22,13 @@ export default async function handler(req: NextRequest) {
 
     const hasSpace = searchParams.has("space");
 
+    const size = searchParams.get("size")?.split("x");
+
+    let width = "1280";
+    let height = "640";
+    if (size) {
+      [width, height] = size;
+    }
     return new ImageResponse(
       (
         <div
@@ -41,7 +48,7 @@ export default async function handler(req: NextRequest) {
           <span
             style={{
               color: "#E93D82",
-              paddingRight: hasSpace ? "1rem" : "unset",
+              paddingRight: hasSpace ? "1rem" : "",
             }}
           >
             ~/maxphillipsdev
@@ -58,8 +65,8 @@ export default async function handler(req: NextRequest) {
         </div>
       ),
       {
-        width: 1200,
-        height: 630,
+        width: parseInt(width),
+        height: parseInt(height),
         fonts: [
           {
             name: "JetBrains Mono",
